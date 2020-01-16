@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hsj.hotel.mapper.TdSysUserRoleMapper">
+
+    <select id="queryRoleVoByUserIds" resultType="com.hsj.hotel.model.TdSysUserRole">
+
+        select t1.role_name,t1.role_code,t2.user_id
+        from td_sys_role t1 left join td_sys_user_role t2 on t1.role_id = t2.role_id
+        <where>
+            <foreach collection="userIds" item="userId" open="(" close=")" separator="OR">
+                t2.user_id =#{userId}
+            </foreach>
+        </where>
+    </select>
+
+    <insert id="saveList">
+        insert into td_sys_user_role(
+               data_id,
+               user_id,
+               role_id,
+               data_status,
+               create_time,
+               create_user
+        ) values
+        <foreach collection="userRoleList" item="userRole" open="(" close=")" separator=",">
+            #{userRole.dataId,jdbcType=VARCHAR},
+            #{userRole.userId,jdbcType=VARCHAR},
+            #{userRole.roleId,jdbcType=VARCHAR},
+            #{userRole.dataStatus,jdbcType=VARCHAR},
+            #{userRole.createTime,jdbcType=DATE},
+            #{userRole.createUser,jdbcType=VARCHAR}
+        </foreach>
+
+    </insert>
+
+    <delete id="deleteByUserId">
+        delete from td_sys_user_role where user_id = #{userId}
+    </delete>
+
+    <select id="queryRoleByUserId" resultType="string">
+        select t1.role_id
+        from td_sys_role t1 left join td_sys_user_role t2 on t1.role_id = t2.role_id
+        where t2.user_id = #{userId}
+    </select>
+</mapper>

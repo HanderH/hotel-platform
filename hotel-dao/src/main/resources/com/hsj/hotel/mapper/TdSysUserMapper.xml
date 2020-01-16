@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hsj.hotel.mapper.TdSysUserMapper">
+
+    <select id="queryAll"  resultType="com.hsj.hotel.model.TdSysUser">
+        select
+             user_id,
+             user_name,
+             user_code,
+             user_type,
+             user_password,
+             user_type,
+             user_sex,
+             user_status,
+             create_time,
+             create_user,
+             update_time,
+             update_user
+       from td_sys_user
+       <where>
+           <if test="user.userSex!=null and user.userSex!=''">and user_sex = #{user.userSex}</if>
+           <if test="user.userCode!=null and user.userCode!=''">and user_code = #{user.userCode}</if>
+           <if test="user.userName!=null and user.userName!=''">and user_name like concat(concat('%',#{user.userName}),'%')</if>
+       </where>
+        order by create_time desc
+    </select>
+
+    <select id="selectById">
+         select
+             user_id,
+             user_name,
+             user_code,
+             user_type,
+             user_password,
+             user_type,
+             user_sex,
+             user_status,
+             create_time,
+             create_user,
+             update_time,
+             update_user
+       from td_sys_user
+       where user_id = #{userId}
+    </select>
+
+    <insert id="saveUser">
+        insert into td_sys_user(
+             user_id,
+             user_name,
+             user_code,
+             user_type,
+             user_password,
+             user_type,
+             user_sex,
+             user_status,
+             create_time,
+             create_user,
+             update_time,
+             update_user
+        ) values (
+             #{user.userId,jdbcType=VARCHAR},
+             #{user.userName,jdbcType=VARCHAR},
+             #{user.userCode,jdbcType=VARCHAR},
+             #{user.userType,jdbcType=VARCHAR},
+             #{user.userPassword,jdbcType=VARCHAR},
+             #{user.userSex,jdbcType=VARCHAR},
+             #{user.userStatus,jdbcType=VARCHAR},
+             #{user.createTime,jdbcType=VARCHAR},
+             #{user.createUser,jdbcType=VARCHAR},
+             #{user.updateTime,jdbcType=VARCHAR},
+             #{user.updateUser,jdbcType=VARCHAR}
+        )
+    </insert>
+
+   <!-- <update id="updateUser">
+        update  td_sys_user
+        set user_name = #{user.userName,jdbcType=varchar},
+            user_code =  #{user.userCode,jdbcType=varchar},
+            user_password =   #{user.userPassword,jdbcType=varchar},
+            user_sex =  #{user.userSex,jdbcType=varchar},
+            user_status =  #{user.userStatus,jdbcType=varchar},
+            user_type = #{user.userType,jdbcType=varchar}
+
+    </update>-->
+
+    <delete id="deleteById">
+        delete from td_sys_user where user_id = #{userId}
+    </delete>
+
+
+</mapper>

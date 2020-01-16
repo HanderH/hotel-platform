@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hsj.hotel.mapper.TdSysRoleMapper">
+
+    <select id="queryAll"  resultType="com.hsj.hotel.model.TdSysRole">
+        select
+             role_id,
+             role_name,
+             role_code,
+             role_type,
+             role_status,
+             create_time,
+             create_user,
+             update_time,
+             update_user
+       from td_sys_role
+    </select>
+
+    <select id="queryRoleIds" resultType="string">
+        select
+             role_id
+        from td_sys_role
+        <where>
+            <foreach collection="roles" item="roleCode" open="(" close=")" separator="OR">
+                role_code=#{roleCode}
+            </foreach>
+        </where>
+    </select>
+
+</mapper>

@@ -1,0 +1,16 @@
+.idea
+/hotel-dao/src/main/java/com/hsj/hotel/mapper/*.xml
+/target/
+hotel-view/node_modules/
+*.iml
+compiler.xml
+encodings.xml
+misc.xml
+vcs.xml
+*.class
+/hotel-common/target/
+/hotel-dao/target/
+/hotel-service/target/
+/hotel-web/target/
+/hotel-view/dist/
+/hotel-web/src/main/resources/static/
