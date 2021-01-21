@@ -43,7 +43,7 @@
         <commons-pool.version>1.5.5</commons-pool.version>
         <aicache-client.version>2.6.4</aicache-client.version>
         <lombok.version>1.16.20</lombok.version>
-        <jackson.version>2.9.9</jackson.version>
+        <jackson.version>2.9.10.7</jackson.version>
         <slf4j.self.version>1.7.5</slf4j.self.version>
         <swagger.version>2.9.2</swagger.version>
     </properties>
