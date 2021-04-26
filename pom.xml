@@ -34,7 +34,7 @@
         <jedis.version>2.9.0</jedis.version>
 
         <commons-beanutils.version>1.9.4</commons-beanutils.version>
-        <commons-io.version>2.6</commons-io.version>
+        <commons-io.version>2.7</commons-io.version>
         <commons-lang3.version>3.3.2</commons-lang3.version>
         <commons-lang.version>2.1</commons-lang.version>
         <commons-digester.version>1.7</commons-digester.version>
